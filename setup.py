@@ -1,20 +1,12 @@
-import setuptools
+import site
+import os
+import shutil
 
+siteFolder = site.getsitepackages()[0]
 
-setuptools.setup(
-    name="wilibs", # Replace with your own username
-    version="0.0.2",
-    author="Revotech",
-    author_email="support@i2g.cloud",
-    description="Wilib",
-    long_description="Wilib",
-    long_description_content_type="text/markdown",
-    url="https://github.com/revotechUET/wilibs",
-    packages=setuptools.find_packages(),
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    python_requires='>=3.6',
-)
+os.system("pip3 install requests")
+def copy_safe(src, dst):
+    if os.path.exists(dst):
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+copy_safe('wilibs', os.path.join(siteFolder, "wilibs"))
